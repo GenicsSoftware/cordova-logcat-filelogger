@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-logcat" version="0.1.0">
+    <name>Cordova Logcat Filelogger</name>
+    <description>---</description>
+    <author>Michael Jedich</author>
+    <license>MIT</license>
+    <!-- cordova -->
+    <engines>
+        <engine name="cordova" version=">=3.6.0"/>
+    </engines>
+    <!-- js -->
+    <js-module src="www/LogCatPlugin.js" name="LogCatPlugin">
+        <clobbers target="cordova.plugin.LogCatPlugin"/>
+        <clobbers target="plugin.LogCatPlugin"/>
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="LogCatPlugin">
+                <param name="android-package" value="de.mj.cordova.plugin.filelogger.LogCatPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/LogCatPlugin.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
+    </platform>
+</plugin>

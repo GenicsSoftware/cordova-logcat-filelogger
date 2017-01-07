@@ -1,0 +1,13 @@
+{
+  "name": "cordova-plugin-logcat",
+  "version": "0.1.0",
+  "description": "---",
+  "cordova": {
+    "id": "cordova-plugin-logcat",
+    "platforms": [
+      "android"
+    ]
+  },
+  "author": "Michael Jedich",
+  "license": "MIT"
+}

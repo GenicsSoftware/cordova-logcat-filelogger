@@ -10,8 +10,7 @@
     </engines>
     <!-- js -->
     <js-module src="www/LogCatPlugin.js" name="LogCatPlugin">
-        <clobbers target="cordova.plugin.LogCatPlugin"/>
-        <clobbers target="plugin.LogCatPlugin"/>
+        <clobbers target="cordova.plugins.LogCatPlugin"/>
     </js-module>
     <!-- android -->
     <platform name="android">

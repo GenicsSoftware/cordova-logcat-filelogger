@@ -3,21 +3,16 @@ package de.mj.cordova.plugin.filelogger;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class BashExecutor implements Runnable {
+class BashExecutor implements Runnable {
     private String command;
     private boolean commandStillRunning;
     private Process process = null;
     private BashExecutorEventHandler eventHandler;
 
-    public BashExecutor(BashExecutorEventHandler eventHandler) {
+    BashExecutor(BashExecutorEventHandler eventHandler) {
         this.eventHandler = eventHandler;
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see Runnable#run()
-     */
     public void run() {
         if (command == null) {
             throw new NullPointerException("NO COMMAND GIVEN");
@@ -26,8 +21,7 @@ public class BashExecutor implements Runnable {
         try {
             eventHandler.executionStarted();
 
-            process = Runtime.getRuntime().exec(
-                    new String[]{"bash", "-c", command});
+            process = Runtime.getRuntime().exec(command);
 
             getProcessOutput();
         } catch (Exception e) {
@@ -38,7 +32,7 @@ public class BashExecutor implements Runnable {
         }
     }
 
-    public void getProcessOutput() {
+    private void getProcessOutput() {
         try {
             if (process != null) {
                 Thread thread1 = new Thread(new ProcessStandardOutput());

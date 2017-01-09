@@ -1,6 +1,6 @@
 package de.mj.cordova.plugin.filelogger;
 
-public abstract class BashExecutorEventHandler {
+abstract class BashExecutorEventHandler {
     public abstract void standardOutput(String line);
     public abstract void errorOutput(String line);
     public abstract void executionStarted();

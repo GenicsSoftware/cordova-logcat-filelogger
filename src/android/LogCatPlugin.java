@@ -22,12 +22,14 @@ import java.io.OutputStreamWriter;
 
 public class LogCatPlugin extends CordovaPlugin {
 
-    private final static String TAG = "LogCatPlugin";
+    public final static String TAG = "LogCatPlugin";
 
     private final static String LOG_FOLDER_NAME = TAG;
 
     private CordovaInterface cordovaInstance = null;
     private CordovaWebView webView = null;
+
+    private Thread loggerThread = null;
 
     public enum ACTION {
         START_LOGGER("startLogger");
@@ -37,33 +39,44 @@ public class LogCatPlugin extends CordovaPlugin {
         }
         @Override
         public String toString() {
-            Log.v(TAG, action);
             return action;
         }
     }
 
     @Override
-    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+    public void initialize(final CordovaInterface cordova, final CordovaWebView webView) {
         this.webView = super.webView;
         this.cordovaInstance = super.cordova;
         Log.v(TAG, "Init");
     }
 
     @Override
+    public void onDestroy() {
+        if (this.loggerThread != null) {
+            this.loggerThread.interrupt();
+            this.loggerThread = null;
+        }
+
+        super.onDestroy();
+    }
+
+    @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.v(TAG, action);
         if (action.equals(ACTION.START_LOGGER.toString())) {
-            Log.v(TAG, ACTION.START_LOGGER.toString());
-
+            this.startLogging();
             return true;
         } else {
             return false;
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    private void startLogging() {
+        final LogCatFileWriter eventHandler = new LogCatFileWriter();
+        final BashExecutor bashExecuter = new BashExecutor(eventHandler);
+        bashExecuter.setCommand("logcat");
+        this.loggerThread = new Thread(bashExecuter);
+        this.loggerThread.start();
     }
 
 }

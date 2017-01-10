@@ -2,16 +2,24 @@ package de.mj.cordova.plugin.filelogger;
 
 import android.util.Log;
 
-public class LogCatFileWriter extends BashExecutorEventHandler {
+class LogCatFileWriter extends BashExecutorEventHandler {
+
+    private FileWriter fileWriter;
+
+    LogCatFileWriter(final FileWriter writer) {
+        this.fileWriter = writer;
+    }
 
     @Override
-    public void standardOutput(String line) {
-        Log.e("aaa", "7 - " + line);
+    public void standardOutput(final String line) {
+        if (line.contains(" E ")) {
+            this.fileWriter.append(line + "\n");
+        }
     }
 
     @Override
     public void errorOutput(String line) {
-
+        this.fileWriter.append(line + "\n");
     }
 
     @Override

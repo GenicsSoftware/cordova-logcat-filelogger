@@ -1,9 +1,6 @@
 package de.mj.cordova.plugin.filelogger;
 
-import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -11,14 +8,6 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 public class LogCatPlugin extends CordovaPlugin {
 
@@ -72,7 +61,9 @@ public class LogCatPlugin extends CordovaPlugin {
     }
 
     private void startLogging() {
-        final LogCatFileWriter eventHandler = new LogCatFileWriter();
+        final FileWriter fileWriter = new FileWriter("test.txt", TAG, cordova.getActivity().getApplicationContext()) ;
+        final LogCatFileWriter eventHandler = new LogCatFileWriter(fileWriter);
+
         final BashExecutor bashExecuter = new BashExecutor(eventHandler);
         bashExecuter.setCommand("logcat");
         this.loggerThread = new Thread(bashExecuter);

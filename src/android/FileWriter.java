@@ -16,7 +16,7 @@ public class FileWriter {
     public FileWriter(final String targetFileName, final String loggerTag, final Context context) {
         this.targetFile = new File(context.getFilesDir() + File.separator + targetFileName);
         Log.v(loggerTag, "Writing to: " + targetFile.getAbsolutePath());
-        targetFile.delete();
+        // targetFile.delete();
         this.loggerTag = loggerTag;
         this.context = context;
     }

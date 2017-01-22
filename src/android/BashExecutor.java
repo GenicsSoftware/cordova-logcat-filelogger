@@ -1,5 +1,7 @@
 package de.mj.cordova.plugin.filelogger;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -8,6 +10,10 @@ class BashExecutor implements Runnable {
     private boolean commandStillRunning;
     private Process process = null;
     private BashExecutorEventHandler eventHandler;
+
+    BashExecutor() {
+        //
+    }
 
     BashExecutor(BashExecutorEventHandler eventHandler) {
         this.eventHandler = eventHandler;
@@ -19,16 +25,20 @@ class BashExecutor implements Runnable {
         }
         commandStillRunning = true;
         try {
-            eventHandler.executionStarted();
+            if (eventHandler != null) {
+                eventHandler.executionStarted();
+            }
 
             process = Runtime.getRuntime().exec(command);
 
             getProcessOutput();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.v(LogCatPlugin.TAG, Log.getStackTraceString(e));
         } finally {
             commandStillRunning = false;
-            eventHandler.executionStopped();
+            if (eventHandler != null) {
+                eventHandler.executionStopped();
+            }
         }
     }
 
@@ -42,10 +52,8 @@ class BashExecutor implements Runnable {
                 thread1.join();
                 thread2.join();
             }
-        } catch (InterruptedException e) {
-            // TODO:
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.v(LogCatPlugin.TAG, Log.getStackTraceString(e));
         }
     }
 
@@ -56,10 +64,12 @@ class BashExecutor implements Runnable {
                         process.getInputStream()));
                 String currentLine;
                 while ((currentLine = stdInput.readLine()) != null && process != null) {
-                    eventHandler.standardOutput(currentLine);
+                    if (eventHandler != null) {
+                        eventHandler.standardOutput(currentLine);
+                    }
                 }
             } catch (Exception e) {
-                // TODO:
+                Log.v(LogCatPlugin.TAG, Log.getStackTraceString(e));
             }
         }
     }
@@ -72,26 +82,31 @@ class BashExecutor implements Runnable {
 
                 String currentLine;
                 while ((currentLine = stdError.readLine()) != null) {
-                    eventHandler.errorOutput(currentLine);
+                    if (eventHandler != null) {
+                        eventHandler.errorOutput(currentLine);
+                    }
                 }
             } catch (Exception e) {
-                // TODO:
+                Log.v(LogCatPlugin.TAG, Log.getStackTraceString(e));
             }
         }
     }
 
-    public boolean killProcess() {
+    boolean killProcess() {
         try {
             if (process != null) {
-                eventHandler.processKilled();
+                if (eventHandler != null) {
+                    eventHandler.processKilled();
+                }
                 process.destroy();
                 return true;
             } else {
                 return false;
             }
         } catch (Exception e) {
-            return false;
+            Log.v(LogCatPlugin.TAG, Log.getStackTraceString(e));
         }
+        return false;
     }
 
     public String getCommand() {

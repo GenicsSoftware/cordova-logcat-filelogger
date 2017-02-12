@@ -32,7 +32,7 @@ public class LogCatPlugin extends CordovaPlugin {
     private final static String DEFAULT_LC_FILENAME = TAG + "Log.txt";
     private final static String DEFAULT_JS_FILENAME = TAG + "JsLog.txt";
     private final static String DEFAULT_ZIP_FILENAME = TAG + ".zip";
-    private final static String ARRAY_SEPARATOR = ";;;";
+    private final static String ARRAY_SEPARATOR = "--entry--";
     private final static String LOGCAT_COMMAND = "logcat -v long";
     private final static String LOGCAT_CLEAR_BUFFER_COMMAND = "logcat -c";
     private final static String LOG_ROLLING_EXTENSION = "bak";
@@ -246,7 +246,8 @@ public class LogCatPlugin extends CordovaPlugin {
             public void run() {
                 try {
                     Thread.sleep(100);
-                    Log.v(LogCatPlugin.TAG, "Should appear after the NullPointerException");
+                    Log.v(LogCatPlugin.TAG,
+                            "Should appear after the NullPointerException");
                     callbackContext.success();
                 } catch (InterruptedException e) {
                     //
@@ -272,7 +273,11 @@ public class LogCatPlugin extends CordovaPlugin {
             }
 
             if (this.lcBak.exists()) {
-                this.lcFile.delete();
+                this.lcBak.delete();
+            }
+
+            if (this.lcCon.exists()) {
+                this.lcCon.delete();
             }
 
             if (this.jsFile.exists()) {
@@ -282,6 +287,11 @@ public class LogCatPlugin extends CordovaPlugin {
             if (this.jsBak.exists()) {
                 this.jsBak.delete();
             }
+
+            if (this.jsCon.exists()) {
+                this.jsCon.delete();
+            }
+
             callbackContext.success();
         } catch (Exception e) {
             callbackContext.error(RETURN_CODE.COULD_NOT_DELETE_FILE.name());
@@ -489,6 +499,7 @@ public class LogCatPlugin extends CordovaPlugin {
             this.loggerThread.interrupt();
             this.loggerThread = null;
         }
+
         if (callbackContext != null) {
             callbackContext.success();
         }

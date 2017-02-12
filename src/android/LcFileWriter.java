@@ -27,6 +27,10 @@ class LcFileWriter extends BashExecutorEventHandler {
     private boolean enableCallback;
     private CallbackContext callbackContext;
 
+    private final static String NEW_LINE_SEPARATOR = "--linebreak--";
+    private final static String JS_CALLBACK_FUNCTION =
+            "cordova.plugins.LogCatPlugin.onLogCatEntry";
+
     private enum RETURN_CODE {
         LOGGING_STOPPED,
         PROCESS_KILLED,
@@ -164,14 +168,16 @@ class LcFileWriter extends BashExecutorEventHandler {
         if (this.enableCallback) {
             this.cordovaActivity.runOnUiThread(new Runnable() {
                 public void run() {
-                    webView.loadUrl("javascript:cordova.plugins.LogCatPlugin.onLogCatEntry('" +
-                            message.replace("\n", "--linebreak--").replace("'", "\\'") + "')");
+                    webView.loadUrl("javascript:" + JS_CALLBACK_FUNCTION +
+                            "('" + message.replace("\n", NEW_LINE_SEPARATOR)
+                            .replace("'", "\\'") + "')");
                 }
             });
         }
     }
 
     private String messageBody = null;
+
     private void handleLine(final String line) {
 
         if (line == null || line.trim().isEmpty() || line.contains("I/System.out")) {

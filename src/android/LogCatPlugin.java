@@ -236,7 +236,7 @@ public class LogCatPlugin extends CordovaPlugin {
     private void clearLogCatBuffer(final CallbackContext callbackContext) {
         final BashExecutor executor = new BashExecutor();
         executor.setCommand(LOGCAT_CLEAR_BUFFER_COMMAND);
-        cordovaInstance.getThreadPool().execute(bashExecuter);
+        cordovaInstance.getThreadPool().execute(executor);
         callbackContext.success();
     }
 

@@ -34,6 +34,9 @@ app.service("LoggerService",
                             logCatFileName: 'catLog.txt',
                             maxFileSizeInKB: 1024,
                             filterBy: [
+                                ' V/',
+                                ' D/',
+                                ' I/',
                                 ' W/',
                                 ' E/',
                                 ' F/',
@@ -42,16 +45,32 @@ app.service("LoggerService",
                             filterOut: [
                                 'I/InstantRun',      // Emulation
                                 'EGL_emulation',     // Emulation
+                                'E/emuglGLESv2_enc', // Emulation
                                 'EGL_SWAP_BEHAVIOR', // Emulation
                                 'eglCodecCommon',    // Emulation
+                                'E/libEGL',          // Emulation
                                 ':CONSOLE',          // Console-Logs
-                                'I/System.out',
+                                'I/System.out',      // Java output
                                 '/LogCatPlugin',
-                                'D/SystemWebChromeClient'
+                                'D/SystemWebChromeClient',
+                                'javascript:cordova.plugins.LogCatPlugin'
                             ],
                             logCallBack: function (sHeader, sBody, sLevel) {
-                                $log.info('[' + PLUGIN_NAME + '/' + sLevel + '] ' +
-                                    sHeader + '\n' + sBody);
+                                var sTitle = '%c' + PLUGIN_NAME + ': ' + sHeader;
+                                if (sLevel === 'VERBOSE' || sLevel === 'DEBUG') {
+                                    console.groupCollapsed(sTitle, 'color:grey');
+                                    $log.debug(sBody);
+                                } else if (sLevel === 'INFO') {
+                                    console.groupCollapsed(sTitle, '');
+                                    $log.info(sBody);
+                                } else if (sLevel === 'WARNING') {
+                                    console.groupCollapsed(sTitle, 'color:orange');
+                                    $log.warn(sBody);
+                                } else if (sLevel === 'ERROR' || sLevel === 'FATAL') {
+                                    console.groupCollapsed(sTitle, 'color:red');
+                                    $log.error(sBody);
+                                }
+                                console.groupEnd();
                             }
                         }
                     );

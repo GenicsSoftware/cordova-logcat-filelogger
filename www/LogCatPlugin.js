@@ -181,19 +181,19 @@
                     var sBody = '\t' + aSplitted.splice(1).join('\n\t');
                     var sLevel = null;
                     if (sHeader.indexOf(' V/') > -1) {
-                        sLevel = "VERBOSE";
+                        sLevel = 'VERBOSE';
                     } else if (sHeader.indexOf(' D/') > -1) {
-                        sLevel = "DEBUG";
+                        sLevel = 'DEBUG';
                     } else if (sHeader.indexOf(' I/') > -1) {
-                        sLevel = "INFO";
+                        sLevel = 'INFO';
                     } else if (sHeader.indexOf(' W/') > -1) {
-                        sLevel = "WARNING";
+                        sLevel = 'WARNING';
                     } else if (sHeader.indexOf(' D/') > -1) {
-                        sLevel = "DEBUG";
+                        sLevel = 'DEBUG';
                     } else if (sHeader.indexOf(' E/') > -1) {
-                        sLevel = "ERROR";
+                        sLevel = 'ERROR';
                     } else if (sHeader.indexOf(' F/') > -1) {
-                        sLevel = "FATAL";
+                        sLevel = 'FATAL';
                     }
                     fnCallBack(sHeader, sBody, sLevel);
                 } catch (e) {

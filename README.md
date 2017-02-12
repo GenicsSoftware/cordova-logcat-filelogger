@@ -119,7 +119,7 @@ It should look like this:
 <!-- [...] -->
 ```
 
-Initialize the plugin in your ```www/js/app.js``` by appending this block:
+Initialize the plugin in your ```www/js/app.js``` by appending this ```run``` block:
 ```javascript
 .run(
     /**

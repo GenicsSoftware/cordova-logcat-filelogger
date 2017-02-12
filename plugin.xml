@@ -3,7 +3,7 @@
     <name>Cordova Logcat Filelogger</name>
     <description>---</description>
     <author>Michael Jedich</author>
-    <license>Apache2</license>
+    <license>Apache Version 2.0</license>
     <!-- cordova -->
     <engines>
         <engine name="cordova" version=">=5.0.0"/>
@@ -31,7 +31,7 @@
         <source-file src="src/android/Queue.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/QueueMonitor.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/Zipper.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
-        <source-file src="src/android/org/apache/commons/io/Charsets.java" target-dir="src/android/org/apache/commons/io"/>
-        <source-file src="src/android/org/apache/commons/io/input/ReversedLinesFileReader.java" target-dir="src/android/org/apache/commons/io/input"/>
+        <source-file src="src/android/org/apache/commons/io/Charsets.java" target-dir="src/de/mj/cordova/plugin/filelogger/org/apache/commons/io"/>
+        <source-file src="src/android/org/apache/commons/io/input/ReversedLinesFileReader.java" target-dir="src/de/mj/cordova/plugin/filelogger/org/apache/commons/io/input"/>
     </platform>
 </plugin>

@@ -46,7 +46,8 @@ app.service("LoggerService",
                                 'eglCodecCommon',    // Emulation
                                 ':CONSOLE',          // Console-Logs
                                 'I/System.out',
-                                '/LogCatPlugin'
+                                '/LogCatPlugin',
+                                'D/SystemWebChromeClient'
                             ],
                             logCallBack: function (sHeader, sBody, sLevel) {
                                 $log.info('[' + PLUGIN_NAME + '/' + sLevel + '] ' +

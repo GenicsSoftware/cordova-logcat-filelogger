@@ -2,7 +2,7 @@
 
 This cordova plugin writes Logcat and JavaScript messages to a file for later use. It supports log rotation and file compression for easier transfer.
 
-![](https://github.com/kolbasa/cordova-logcat-filelogger/blob/images/LogCatPlugin.gif?raw=true)
+![](https://github.com/kolbasa/cordova-logcat-filelogger/blob/images/logcat-inspect.gif)
 
 ### Installing the plugin
 

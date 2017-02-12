@@ -173,7 +173,7 @@ public class LogCatPlugin extends CordovaPlugin {
         return true;
     }
 
-    private void getJsLogPath(final CallbackContext callbackContext) {
+    private void getJcLogPath(final CallbackContext callbackContext) {
         final File fileToCopy = FileTools.prepareDownload(lcFile, lcBak, lcCon);
         if (fileToCopy != null && fileToCopy.exists()) {
             callbackContext.success(fileToCopy.getAbsolutePath());
@@ -182,7 +182,7 @@ public class LogCatPlugin extends CordovaPlugin {
         }
     }
 
-    private void getJcLogPath(final CallbackContext callbackContext) {
+    private void getJsLogPath(final CallbackContext callbackContext) {
         final File fileToCopy = FileTools.prepareDownload(jsFile, jsBak, jsCon);
         if (fileToCopy != null && fileToCopy.exists()) {
             callbackContext.success(fileToCopy.getAbsolutePath());

@@ -12,12 +12,12 @@ app.service("LoggerService",
         var logCatPlugin = null;
         var PLUGIN_NAME = 'LogCatPlugin';
         var PLUGIN_NOT_LOADED = 'Plugin not loaded: ' + PLUGIN_NAME;
+        window[PLUGIN_NAME] = this;
 
         document.addEventListener('deviceready', function () {
             if (window.cordova != null && window.cordova.plugins != null &&
                 window.cordova.plugins[PLUGIN_NAME] != null) {
                 logCatPlugin = window.cordova.plugins[PLUGIN_NAME];
-                window[PLUGIN_NAME] = logCatPlugin;
                 $log.info('Plugin loaded: ' + PLUGIN_NAME);
             } else {
                 $log.info(PLUGIN_NOT_LOADED);

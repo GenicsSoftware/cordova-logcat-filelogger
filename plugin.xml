@@ -22,10 +22,8 @@
         <source-file src="src/android/BashExecutor.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/BashExecutorEventHandler.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/FileTools.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
-        <source-file src="src/android/FileWriter.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/JsFileWriter.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/LcFileWriter.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
-        <source-file src="src/android/LogCatFileWriter.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/LogCatPlugin.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/LogEntry.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>
         <source-file src="src/android/LogFileReader.java" target-dir="src/de/mj/cordova/plugin/filelogger"/>

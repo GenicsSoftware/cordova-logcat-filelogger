@@ -17,6 +17,7 @@ app.service("LoggerService",
             if (window.cordova != null && window.cordova.plugins != null &&
                 window.cordova.plugins[PLUGIN_NAME] != null) {
                 logCatPlugin = window.cordova.plugins[PLUGIN_NAME];
+                window[PLUGIN_NAME] = logCatPlugin;
                 $log.info('Plugin loaded: ' + PLUGIN_NAME);
             } else {
                 $log.info(PLUGIN_NOT_LOADED);

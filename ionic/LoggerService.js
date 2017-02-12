@@ -13,13 +13,15 @@ app.service("LoggerService",
         var PLUGIN_NAME = 'LogCatPlugin';
         var PLUGIN_NOT_LOADED = 'Plugin not loaded: ' + PLUGIN_NAME;
 
-        if (window.cordova != null && window.cordova.plugins != null &&
-            window.cordova.plugins[PLUGIN_NAME] != null) {
-            logCatPlugin = window.cordova.plugins[PLUGIN_NAME];
-            $log.info('Plugin loaded: ' + PLUGIN_NAME);
-        } else {
-            $log.info(PLUGIN_NOT_LOADED);
-        }
+        document.addEventListener('deviceready', function () {
+            if (window.cordova != null && window.cordova.plugins != null &&
+                window.cordova.plugins[PLUGIN_NAME] != null) {
+                logCatPlugin = window.cordova.plugins[PLUGIN_NAME];
+                $log.info('Plugin loaded: ' + PLUGIN_NAME);
+            } else {
+                $log.info(PLUGIN_NOT_LOADED);
+            }
+        }, false);
 
         this.init = function () {
             return new $q(function (resolve, reject) {

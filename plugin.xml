@@ -3,10 +3,10 @@
     <name>Cordova Logcat Filelogger</name>
     <description>---</description>
     <author>Michael Jedich</author>
-    <license>MIT</license>
+    <license>Apache2</license>
     <!-- cordova -->
     <engines>
-        <engine name="cordova" version=">=3.6.0"/>
+        <engine name="cordova" version=">=5.0.0"/>
     </engines>
     <!-- js -->
     <js-module src="www/LogCatPlugin.js" name="LogCatPlugin">
@@ -14,6 +14,7 @@
     </js-module>
     <!-- android -->
     <platform name="android">
+        <framework src="com.android.support:support-v4:+" />
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="LogCatPlugin">
                 <param name="android-package" value="de.mj.cordova.plugin.filelogger.LogCatPlugin"/>

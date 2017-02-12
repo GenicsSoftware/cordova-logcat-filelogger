@@ -170,7 +170,7 @@ class LcFileWriter extends BashExecutorEventHandler {
                 public void run() {
                     webView.loadUrl("javascript:" + JS_CALLBACK_FUNCTION +
                             "('" + message.replace("\n", NEW_LINE_SEPARATOR)
-                            .replace("'", "\\'") + "')");
+                            .replace("'", "") + "')");
                 }
             });
         }

@@ -260,8 +260,11 @@ app.service("LoggerService",
         this.throwExampleError = function () {
             return new $q(function (resolve, reject) {
                 if (logCatPlugin != null) {
-                    logCatPlugin.throwExampleError();
-                    resolve();
+                    logCatPlugin.throwExampleError(
+                        {
+                            success: resolve
+                        }
+                    );
                 } else {
                     reject(PLUGIN_NOT_LOADED);
                 }

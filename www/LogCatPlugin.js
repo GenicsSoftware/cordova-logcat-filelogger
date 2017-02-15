@@ -157,17 +157,13 @@
             opt = opt || {};
             exec(
                 opt['success'],
-                opt['failure'],
                 'LogCatPlugin',
                 'throwExampleError',
                 []
             );
         },
-        throwExampleFatalError: function (opt) {
-            opt = opt || {};
+        throwExampleFatalError: function () {
             exec(
-                opt['success'],
-                opt['failure'],
                 'LogCatPlugin',
                 'throwExampleFatalError',
                 []

@@ -113,13 +113,8 @@ app.service("LoggerService",
         this.jsLog = function (sLog) {
             return new $q(function (resolve, reject) {
                 if (logCatPlugin != null) {
-                    logCatPlugin.jsLog(
-                        sLog,
-                        {
-                            success: resolve,
-                            failure: reject
-                        }
-                    );
+                    logCatPlugin.jsLog(sLog);
+                    resolve();
                 } else {
                     reject(PLUGIN_NOT_LOADED);
                 }

@@ -48,11 +48,8 @@
                 []
             );
         },
-        jsLog: function (string, opt) {
-            opt = opt || {};
+        jsLog: function (string) {
             exec(
-                opt['success'],
-                opt['failure'],
                 'LogCatPlugin',
                 'jsLog',
                 [

@@ -101,8 +101,7 @@ app.service("LoggerService",
                 if (logCatPlugin != null) {
                     logCatPlugin.stopLogger(
                         {
-                            success: resolve,
-                            failure: reject
+                            success: resolve
                         }
                     );
                 } else {

@@ -89,15 +89,19 @@ logCatPlugin.getLcLogPath(
 
 | Method Name | Arguments | Notes
 |---|---|---|
-| [`startLogger`]() | `{success:fn,failure:fn}` | Starts to write all Logcat data to your specified file. |
-| [`stopLogger`]() | `{success:fn,failure:fn}` | Stops the Logger. |
-| [`deleteLog`]() | `{success:fn,failure:fn}` | Deletes all files including the JavaScript log. It is not necessary to stop the Logger first.  |
-| [`jsLog`]() | `jsLog`, `{success:fn,failure:fn}` | Write your JavaScript log into a separated log file. |
-| [`getLcLogPath`]() | `{success:fn,failure:fn}` | Returns the Logcat logfile path. |
-| [`getJsLogPath`]() | `{success:fn,failure:fn}` | Returns the JavaScript logfile path. |
-| [`throwExampleError`]() | `{success:fn}` | Throw a NullPointerException for debugging purposes. |
+| [`startLogger`]() | `{ success:fn, failure:fn }` | Starts to write all Logcat data to your specified file. Possible reject codes: `'LOGGING_STOPPED'`, `'PROCESS_KILLED'`, `'LOGCAT_COMMAND_RETURNED_ERROR'`|
+| [`stopLogger`]() | `{ success:fn }` | Stops the Logger. |
+| [`deleteLog`]() | `{ success:fn, failure:fn }` | Deletes all files including the JavaScript log. It is not necessary to stop the Logger first. Possible reject codes: `'COULD_NOT_DELETE_FILE'`. |
+| [`jsLog`]() | `jsLog`, `{ success:fn, failure:fn }` | Write your JavaScript log into a separated log file. |
+| [`getLcLogPath`]() | `{ success:fn, failure:fn }` | Returns the Logcat logfile path. |
+| [`getJsLogPath`]() | `{ success:fn, failure:fn }` | Returns the JavaScript logfile path. |
+| [`zipAll`]() | `{ success:fn, failure:fn }` | Compresses all logfiles to one zip-archive and returns the file path. |
+| [`throwExampleError`]() | `{ success:fn }` | Throw a NullPointerException for debugging purposes. |
 | [`throwExampleFatalError`]() | `none` | Throw a fatal error to crash your application. |
-| [`getLastLcEntries`]() | `{success:fn,failure:fn, filterBy:arr, filterOut:arr, maxEntries:int}` | Returns a string that contains log entries with size: `maxEntries`.  |
+| [`getLastLcEntries`]() | `{ success:fn, failure:fn, filterBy:arr, filterOut:arr, maxEntries:int }` | Returns a string that contains Logcat entries with size `maxEntries`. You can filter them with `filterBy` and `filterOut`. |
+| [`getLastJsEntries`]() | `{ success:fn, failure:fn, filterBy:arr, filterOut:arr, maxEntries:int }` | Returns a string that contains JavaScript entries with size `maxEntries`. You can filter them with `filterBy` and `filterOut`. |
+| [`clearLcBuffer`]() | `{ success:fn, failure:fn }` | Clears the Logcat Buffer with the command: `logcat -c`. |
+| [`showInFileManager`]() | `{ success:fn, failure:fn }` | Copies all log files to the external storage and opens the directory in the systems file browser. |
 
 ### Step by step instructions for Ionic newcomers
 

@@ -43,7 +43,6 @@
             opt = opt || {};
             exec(
                 opt['success'],
-                opt['failure'],
                 'LogCatPlugin',
                 'stopLogger',
                 []

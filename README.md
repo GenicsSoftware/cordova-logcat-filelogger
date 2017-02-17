@@ -98,7 +98,7 @@ logCatPlugin.getLcLogPath(
 | `zipAll` | `{`<br>&nbsp;`success:fn,`<br>&nbsp;`failure:fn`<br>`}` | | Compresses all logfiles to one zip-archive and returns the file path. |
 | `throwExampleError` | `{`<br>&nbsp;`success:fn`<br>`}` | | Throw a NullPointerException for debugging purposes. |
 | `throwExampleFatalError` | `none` | | Throw a fatal error to crash your application. |
-| `getLastLcEntries` | `{`<br>&nbsp;`success:fn,`<br>&nbsp;`failure:fn,`<br>&nbsp;`filterBy:arr,`<br>&nbsp;`filterOut:arr,`<br>&nbsp;`maxEntries:int`<br>`}` | | Returns a string that contains Logcat entries with size `maxEntries`. You can filter them with `filterBy` and `filterOut`. |
+| `getLastLcEntries` | `{`<br>&nbsp;`success:fn,`<br>&nbsp;`failure:fn,`<br>&nbsp;`filterBy:arr,`<br>&nbsp;`filterOut:arr,`<br>&nbsp;`maxEntries:int`<br>`}` | <br>`Function`<br>`Function`<br>`Array`<br>`Array`<br>`Integer`<br>&nbsp; | Returns a string that contains Logcat entries with size `maxEntries`. You can filter them with `filterBy` and `filterOut`. |
 | `getLastJsEntries` | `{`<br>&nbsp;`success:fn,`<br>&nbsp;`failure:fn,`<br>&nbsp;`filterBy:arr,`<br>&nbsp;`filterOut:arr,`<br>&nbsp;`maxEntries:int`<br>`}` | | Returns a string that contains JavaScript entries with size `maxEntries`. You can filter them with `filterBy` and `filterOut`. |
 | `clearLcBuffer` | `{`<br>&nbsp;`success:fn,`<br>&nbsp;`failure:fn`<br>`}` | | Clears the Logcat Buffer with the command: `logcat -c`. |
 | `showInFileManager` | `{`<br>&nbsp;`success:fn,`<br>&nbsp;`failure:fn`<br>`}` | | Copies all log files to the external storage and opens the directory in the systems file browser. |

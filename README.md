@@ -89,7 +89,7 @@ logCatPlugin.getLcLogPath(
 
 | Method Name | Arguments | Notes
 |---|---|---|
-| [`startLogger`]() | `{ success:fn, failure:fn }` | Starts to write all Logcat data to your specified file. Possible reject codes: `'LOGGING_STOPPED'`, `'PROCESS_KILLED'`, `'LOGCAT_COMMAND_RETURNED_ERROR'`|
+| [`startLogger`]() | `{`<br>`success:fn,`<br>`failure:fn`<br>`}` | Starts to write all Logcat data to your specified file. Possible reject codes: `'LOGGING_STOPPED'`, `'PROCESS_KILLED'`, `'LOGCAT_COMMAND_RETURNED_ERROR'`|
 | [`stopLogger`]() | `{ success:fn }` | Stops the Logger. |
 | [`deleteLog`]() | `{ success:fn, failure:fn }` | Deletes all files including the JavaScript log. It is not necessary to stop the Logger first. Possible reject codes: `'COULD_NOT_DELETE_FILE'`. |
 | [`jsLog`]() | `jsLog`, `{ success:fn, failure:fn }` | Write your JavaScript log into a separated log file. |
